@@ -126,7 +126,7 @@ def gerar_relatorio_completo():
 
         # Criação do relatório final
         relatorio_dict = df_final_sorted.to_dict(orient='records')
-        print(json.dumps(df_final_sorted.to_dict(orient='records')))
+        # print(json.dumps(df_final_sorted.to_dict(orient='records')))
 
         # Salva o relatório no banco
         relatorio = Relatorio.objects.create(

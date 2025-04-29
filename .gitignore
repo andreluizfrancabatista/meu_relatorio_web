@@ -1,36 +1,35 @@
-# Python bytecode
+# Byte-compiled / cache
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Ambiente virtual
+# Virtualenvs
 venv/
 env/
 .venv/
 .env/
 
-# Arquivos de configuração locais
+# Environment variables
 *.env
+*.env.*
 
-# Banco de dados SQLite
-db.sqlite3
-*.sqlite3
-
-# Logs
+# Django stuff:
 *.log
-
-# Mídia e arquivos gerados
-media/
-
-# Diretórios de compilação
-staticfiles/
-
-# Arquivos gerados pelo Django
 *.pot
 *.pyc
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+static/
 
-# Diretório de migrações (se você não precisar versioná-las)
-migrations/
+# Migrations (opcional: às vezes você quer versionar migrations)
+**/migrations/
+!**/migrations/__init__.py
+
+# System files
+.DS_Store
+Thumbs.db
 
 # IDEs
 .vscode/
@@ -38,10 +37,50 @@ migrations/
 *.sublime-project
 *.sublime-workspace
 
-# Configurações do sistema
-.DS_Store
-Thumbs.db
+# Docker files
+docker-compose.override.yml
+*.pid
 
-# Arquivos de configuração do Docker (se houver)
-docker-compose.yml
-Dockerfile
+# Redis
+dump.rdb
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+
+# Test results
+nosetests.xml
+junit.xml
+.test/
+
+# MyPy
+.mypy_cache/
+
+# Pytest
+.pytest_cache/
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Database backups
+*.bak
+*.backup
+
+# Local settings
+local_settings.py
+settings_local.py
+
+# Git hooks
+.git/hooks/
+
+# Misc
+logs/
+tmp/
