@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"   # AMQP
+      - "15672:15672" # Dashboard web
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  django:
+    build: .
+    container_name: django
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - rabbitmq
+      - redis
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+
+  celery:
+    build: .
+    container_name: celery
+    command: celery -A django_project worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - django
+      - rabbitmq
+      - redis
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672//
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
